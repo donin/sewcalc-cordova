@@ -1,0 +1,12 @@
+<ion-view view-title="Fabrics">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-text-wrap item-icon-left" ng-repeat="f in fabrics" type="item-text-wrap" href="#/tab/fabric/{{f.id}}">
+        <i class="icon ion-checkmark-circled ng-hide" ng-show="isChoosen(f)"></i>
+        <h2>{{f.title}}</h2>
+        <p>{{f.desc}}</p>
+        <ion-option-button class="button button-positive ion-checkmark-round" ng-click="choose(f);"></ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
