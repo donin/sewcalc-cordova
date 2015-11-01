@@ -2,6 +2,9 @@ angular.module('starter.controllers', [])
 
 .controller('ProductsCtrl', function($scope, Products, Fabrics, Extras, $ionicListDelegate){
 
+    // Events
+
+
     $scope.error = null;
     $scope.fabric = Fabrics.get();
 
@@ -54,7 +57,6 @@ angular.module('starter.controllers', [])
       return false;
     }
 
-
    $scope.extraGroupFilter = Extras.getexgroup($scope.product.extraGroup);
     console.log("Extra group: " + angular.toJson($scope.extraGroupFilter));
 
@@ -95,7 +97,7 @@ angular.module('starter.controllers', [])
 .controller('CalcCtrl', function($scope, Fabrics, Products, Extras, $filter){
     $scope.storedFabric = Fabrics.get();
     $scope.storedProduct = Products.get();
-    $scope.storedExtras = Extras.get();
+    $scope.storedExtras = Extras.get($scope.product.extraGroup);
     $scope.extraLength = {
       text: 1,
     };

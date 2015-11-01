@@ -1310,14 +1310,21 @@ angular.module('starter.services', [])
   return {
     all: function(extraGroup){
 
+      // if exists in storage get it
+      var storedExtra = JSON.parse(localStorage.getItem('extras') || '[]');
+      if( angular.isArray(storedExtra) && storedExtra.length>0 ){
+        console.log("Get extras from storage! "+ angular.toJson(storedExtra));
+        return storedExtra;
+      }
+
       var chosenExtras = [];
       angular.forEach(extras,function(v){
-        if( v.extraGroups.indexOf(extraGroup) ){
+        if( v.extraGroups.indexOf(extraGroup) > -1 ){
           chosenExtras.push(v);
         }
       });
 
-      return JSON.parse(localStorage.getItem('extras')) || chosenExtras;
+      return  chosenExtras;
     },
     save: function(x){
       localStorage.setItem('extras',JSON.stringify(x));
@@ -1333,6 +1340,7 @@ angular.module('starter.services', [])
     },
     reset: function(){
       localStorage.removeItem('extras');
+      console.log("reset Extras in service!");
     },
     getexgroup: function(group){
       var extraGroup = null;

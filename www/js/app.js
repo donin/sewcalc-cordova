@@ -32,6 +32,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
       // setup an abstract state for the tabs directive
       .state('tab', {
+        cache: false,
         url: '/tab',
         abstract: true,
         templateUrl: 'templates/tabs.html'
@@ -40,6 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // Each tab has its own nav history stack:
 
       .state('tab.fabrics', {
+        cache: false,
         url: '/fabrics',
         views: {
           'tab-fabrics': {
