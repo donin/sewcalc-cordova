@@ -1,14 +1,15 @@
 angular.module('starter.services', [])
 
+// Product types
 .factory('Products', function() {
-  // Products
+
   var products = [{
     id: 0,
     title: 'Пальто, полупальто зимние',
     titleLong: 'с подкладкой, в т.ч. из искусственного меха, и утепляющей прокладкой',
     checked: false,
     groupRates: [{
-      group: 1,
+      group: 1, // fabricGroup
       timeCutting: 3.35,
       timeSewing: 33.66
     }, {
@@ -20,7 +21,8 @@ angular.module('starter.services', [])
       timeCutting: 2.88,
       timeSewing: 22.18
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 1,
     title: 'Жакет зимний',
@@ -39,7 +41,8 @@ angular.module('starter.services', [])
       timeCutting: 2.1,
       timeSewing: 17
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 2,
     title: 'Пальто, полупальто с подкладкой',
@@ -62,7 +65,8 @@ angular.module('starter.services', [])
       timeCutting: 2.12,
       timeSewing: 16.8
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 3,
     title: 'Пальто, полупальто без подкладки',
@@ -85,7 +89,8 @@ angular.module('starter.services', [])
       timeCutting: 1.54,
       timeSewing: 13.6
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 4,
     title: 'Пиджак с подкладкой',
@@ -104,7 +109,8 @@ angular.module('starter.services', [])
       timeCutting: 1.80,
       timeSewing: 17.72
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 5,
     title: 'Пиджак без подкладки',
@@ -123,7 +129,8 @@ angular.module('starter.services', [])
       timeCutting: 1.30,
       timeSewing: 14.28
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 6,
     title: 'Жакет с подкладкой',
@@ -142,7 +149,8 @@ angular.module('starter.services', [])
       timeCutting: 1.66,
       timeSewing: 14.16
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 7,
     title: 'Жакет без подкладки',
@@ -161,7 +169,8 @@ angular.module('starter.services', [])
       timeCutting: 1.30,
       timeSewing: 12.74
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 8,
     title: 'Куртка с подкладкой',
@@ -184,7 +193,8 @@ angular.module('starter.services', [])
       timeCutting: 1.42,
       timeSewing: 16.83
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 9,
     title: 'Куртка с подкладкой',
@@ -207,7 +217,8 @@ angular.module('starter.services', [])
       timeCutting: 1.38,
       timeSewing: 15.95
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 10,
     title: 'Куртка без подкладки',
@@ -230,7 +241,8 @@ angular.module('starter.services', [])
       timeCutting: 1.24,
       timeSewing: 13.5
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 11,
     title: 'Жилет с подкладкой',
@@ -253,7 +265,8 @@ angular.module('starter.services', [])
       timeCutting: 0.60,
       timeSewing: 5
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 12,
     title: 'Жилет без подкладки',
@@ -276,7 +289,8 @@ angular.module('starter.services', [])
       timeCutting: 0.50,
       timeSewing: 5.98
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 13,
     title: 'Жилет разных фасонов',
@@ -295,7 +309,8 @@ angular.module('starter.services', [])
       timeCutting: 0.53,
       timeSewing: 8.28
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 14,
     title: 'Жилет под пиджак',
@@ -314,7 +329,8 @@ angular.module('starter.services', [])
       timeCutting: 0.55,
       timeSewing: 5.74
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 15,
     title: 'Жилет разных фасонов',
@@ -337,7 +353,8 @@ angular.module('starter.services', [])
       timeCutting: 0.36,
       timeSewing: 3.44
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 16,
     title: 'Жилет разных фасонов',
@@ -360,7 +377,8 @@ angular.module('starter.services', [])
       timeCutting: 0.33,
       timeSewing: 3.03
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 17,
     title: 'Брюки мужские',
@@ -379,7 +397,8 @@ angular.module('starter.services', [])
       timeCutting: 0.66,
       timeSewing: 5.13
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 18,
     title: 'Брюки женские',
@@ -402,7 +421,8 @@ angular.module('starter.services', [])
       timeCutting: 0.64,
       timeSewing: 4.27
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 19,
     title: 'Брюки мужские и женские',
@@ -417,7 +437,8 @@ angular.module('starter.services', [])
       timeCutting: 0.86,
       timeSewing: 5.27
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 20,
     title: 'Шорты мужские и женские',
@@ -440,7 +461,8 @@ angular.module('starter.services', [])
       timeCutting: 0.48,
       timeSewing: 3.63
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 21,
     title: 'Комбинезон без подкладки',
@@ -463,7 +485,8 @@ angular.module('starter.services', [])
       timeCutting: 1.29,
       timeSewing: 12.12
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 22,
     title: 'Полукомбинезон',
@@ -486,7 +509,8 @@ angular.module('starter.services', [])
       timeCutting: 1.11,
       timeSewing: 9.44
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 23,
     title: 'Юбка без подкладки',
@@ -509,7 +533,8 @@ angular.module('starter.services', [])
       timeCutting: 0.56,
       timeSewing: 4.87
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 24,
     title: 'Платье, сарафан',
@@ -532,7 +557,8 @@ angular.module('starter.services', [])
       timeCutting: 1.54,
       timeSewing: 7.25
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 25,
     title: 'Халат',
@@ -551,7 +577,8 @@ angular.module('starter.services', [])
       timeCutting: 1.39,
       timeSewing: 7.23
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 26,
     title: 'Чехол под платье',
@@ -570,7 +597,8 @@ angular.module('starter.services', [])
       timeCutting: 0.75,
       timeSewing: 4.17
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 27,
     title: 'Юбка нижняя',
@@ -589,7 +617,8 @@ angular.module('starter.services', [])
       timeCutting: 0.74,
       timeSewing: 3.38
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 28,
     title: 'Блузка',
@@ -612,7 +641,8 @@ angular.module('starter.services', [])
       timeCutting: 1.31,
       timeSewing: 5.75
     }
-    ]
+    ],
+    extraGroup: null
   }, {
     id: 29,
     title: 'Верхняя сорочка',
@@ -635,19 +665,38 @@ angular.module('starter.services', [])
       timeCutting: 0.43,
       timeSewing: 3.22
     }
-    ]
+    ],
+    extraGroup: null
   }];
 
   return {
-    all: function(){
-      var p = JSON.parse(localStorage.getItem('product') || '{}');
+    all: function(group){
+
+      // filter product by fabric type group
+      var filterProducts = [];
       angular.forEach(products,function(v){
+        angular.forEach(v.groupRates,function(g){
+
+          // zero group is equal to first one
+          // plus rate*1.2
+          if(g.group == group || group == 0 && g.group == 1){
+            v.groupRate = g;
+            filterProducts.push(v);
+          }
+        });
+      });
+
+      var p = JSON.parse(localStorage.getItem('product') || '{}');
+      angular.forEach(filterProducts,function(v){
         v.checked = v.id == p.id;
       });
-      return products;
+      return filterProducts;
     },
     save: function(p){
       localStorage.setItem('product',JSON.stringify(p));
+    },
+    get: function(){
+      return JSON.parse(localStorage.getItem('product') || '{}');
     },
     reset: function(){
       localStorage.removeItem('product');
@@ -657,11 +706,22 @@ angular.module('starter.services', [])
 
 .factory('Extras', function() {
 
+    /**
+     *
+     * Extra groups
+     * 0 - coat
+     * 1 - pants
+     * 2 - dress
+     * 3 - blouse
+     */
+
   var extras = [{
     id: 0,
     title: 'Рельефы, бочки, швы клиньев',
     titleLong: 'Рельефы или отрезные бочки, или швы в изделии включая швы клиньев, ­ не более двух',
-    num: 1
+    num: 0,
+    groupRates: null,
+    extraGroups: []
   }];
 
   return {
@@ -670,6 +730,15 @@ angular.module('starter.services', [])
     },
     save: function(x){
       localStorage.setItem('extras',JSON.stringify(x));
+    },
+    get: function(){
+      var chosenExtras = [];
+      angular.forEach(this.all(),function(v){
+        if( v.num >0 ) {
+          chosenExtras.push(v);
+        }
+      });
+      return chosenExtras;
     },
     reset: function(){
       localStorage.removeItem('extras');
@@ -734,6 +803,9 @@ angular.module('starter.services', [])
           v.checked = v.id == f.id;
         });
         return fabrics;
+      },
+      get: function(){
+        return JSON.parse(localStorage.getItem('fabric') || '{}');
       },
       save: function(f){
         localStorage.setItem('fabric',JSON.stringify(f));

@@ -1,0 +1,60 @@
+<ion-view view-title="Summary & calculation">
+  <ion-content class="padding">
+    <div class="list card">
+      <div class="item item-divider">Fabric type</div>
+      <div class="item item-body">
+        <div>
+          <b>{{storedFabric.title}}</b>
+        </div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Product</div>
+      <div class="item item-body">
+        <div>
+          <b>{{storedProduct.title}}</b>
+        </div>
+        <div>
+          {{storedProduct.titleLong}}
+        </div>
+      </div>
+    </div>
+    <div class="list card" ng-show="storedExtras.length>0">
+      <div class="item item-divider">Extras options</div>
+      <div class="item item-body" ng-repeat="x in storedExtras">
+        <div>
+          {{x.title}} x {{x.num}}
+        </div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Extra size & length</div>
+      <div class="item item-body">
+        <div class="item range range-positive">
+          <span>0.8</span>
+          <input type="range" ng-model="extraLength.text" name="extra_length" min="0.8" max="1.2" step="0.2" >
+          <span>1.2</span>
+        </div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Your personal rate</div>
+        <label class="item item-input">
+        <span class="input-label">Rate</span>
+          <input type="text" name="personal_rate" ng-model="personalRate.text" required ng-pattern="personalRate.pattern"/>
+        </label>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Calculator</div>
+      <div class="item item-body">
+        <div class="assertive-bg" ng-show="!calculator.isValidate">{{calculator.error}}</div>
+        <div ng-show="calculator.isValidate">{{calculator.total()}}</div>
+        <div ng-show="calculator.isValidate">
+          <div>Fabric group: {{calculator.group}}</div>
+          <div>Cutting time: {{calculator.timeCutting}}</div>
+          <div>Sewing time: {{calculator.timeSewing}}</div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

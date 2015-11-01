@@ -50,6 +50,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       })
 
       .state('tab.products', {
+        cache: false,
         url: '/products',
         views: {
           'tab-products': {
@@ -69,6 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       })
       .state('tab.calc', {
+        cache: false,
         url: '/calc',
         views: {
           'tab-calc': {
