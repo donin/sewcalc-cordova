@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('ProductsCtrl', function($scope, Products, Fabrics, $ionicListDelegate){
+.controller('ProductsCtrl', function($scope, Products, Fabrics, Extras, $ionicListDelegate){
 
     $scope.error = null;
     $scope.fabric = Fabrics.get();
@@ -25,6 +25,7 @@ angular.module('starter.controllers', [])
     $scope.choose = function(product) {
       // Reset old selection
       Products.reset();
+      Extras.reset();
 
       // Renew products in scope
       $scope.products = Products.all($scope.fabric.group);
@@ -40,8 +41,35 @@ angular.module('starter.controllers', [])
 
   })
 
-.controller('ExtrasCtrl', function($scope, Extras, $ionicListDelegate){
-  $scope.extras = Extras.all();
+.controller('ExtrasCtrl', function($scope, Extras, Products, $filter, $ionicListDelegate){
+    $scope.error = null;
+    $scope.product = Products.get();
+
+    console.log("Product extra group:" + $scope.product.extraGroup);
+
+    // No extra group - no extras
+    if( typeof $scope.product.extraGroup === "undefined"  ){
+      console.log("Extra group is undefined!:" + $scope.product.extraGroup);
+      $scope.error = 'Please choose product type first';
+      return false;
+    }
+
+
+   $scope.extraGroupFilter = Extras.getexgroup($scope.product.extraGroup);
+    console.log("Extra group: " + angular.toJson($scope.extraGroupFilter));
+
+  $scope.extras = Extras.all($scope.product.extraGroup);
+  if( typeof $scope.extras === "undefined" || $scope.extras.length ==0 ){
+    console.log("Extras list are empty!");
+    $scope.error = 'Extras are not found. Please choose product type.';
+    return false;
+  }
+
+  // order list
+  $scope.extras = $filter('orderBy')($scope.extras, 'num', true);
+
+  console.log("Total extras:" + $scope.extras.length);
+
   $scope.doToggle = function(){
     Extras.save($scope.extras);
   };
@@ -123,12 +151,15 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('FabricsCtrl', function($scope, Fabrics, $ionicListDelegate) {
+.controller('FabricsCtrl', function($scope, Fabrics, Products, Extras, $ionicListDelegate) {
     $scope.fabrics = Fabrics.all();
 
     $scope.choose = function(fabric) {
       // Reset old selection
       Fabrics.reset();
+      Products.reset();
+      Extras.reset();
+
 
       // Renew in scope
       $scope.fabrics = Fabrics.all();

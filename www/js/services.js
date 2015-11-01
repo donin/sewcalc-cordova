@@ -1308,8 +1308,16 @@ angular.module('starter.services', [])
 }];
 
   return {
-    all: function(){
-      return JSON.parse(localStorage.getItem('extras')) || extras;
+    all: function(extraGroup){
+
+      var chosenExtras = [];
+      angular.forEach(extras,function(v){
+        if( v.extraGroups.indexOf(extraGroup) ){
+          chosenExtras.push(v);
+        }
+      });
+
+      return JSON.parse(localStorage.getItem('extras')) || chosenExtras;
     },
     save: function(x){
       localStorage.setItem('extras',JSON.stringify(x));
@@ -1325,6 +1333,18 @@ angular.module('starter.services', [])
     },
     reset: function(){
       localStorage.removeItem('extras');
+    },
+    getexgroup: function(group){
+      var extraGroup = null;
+      angular.forEach(eg,function(v){
+        console.log("v: " + angular.toJson(v));
+        console.log("v.group: " + v.group);
+        console.log("group: " + group);
+        if( parseInt(v.group) == parseInt(group)){
+          extraGroup = v;
+        }
+      });
+      return extraGroup;
     }
   }
 })

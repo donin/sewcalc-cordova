@@ -61,6 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       })
 
       .state('tab.extras', {
+        cache: false,
         url: '/extras',
         views: {
           'tab-extras': {
