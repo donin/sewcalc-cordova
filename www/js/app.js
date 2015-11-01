@@ -67,6 +67,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             controller: 'ExtrasCtrl'
           }
         }
+      })
+      .state('tab.calc', {
+        url: '/calc',
+        views: {
+          'tab-calc': {
+            templateUrl: 'templates/tab-calc.html',
+            controller: 'CalcCtrl'
+          }
+        }
       });
 
   // if none of the above states are matched, use this as the fallback

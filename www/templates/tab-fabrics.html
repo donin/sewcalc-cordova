@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item class="item item-text-wrap item-icon-left" ng-repeat="f in fabrics">
-        <i class="icon ion-checkmark-circled ng-hide" ng-show="isChosen(f)"></i>
+        <i class="icon ion-checkmark-circled ng-hide" ng-show="f.checked"></i>
         <h2>{{f.title}}</h2>
         <p>{{f.desc}}</p>
         <ion-option-button class="button button-positive ion-checkmark-round" ng-click="choose(f);"></ion-option-button>
