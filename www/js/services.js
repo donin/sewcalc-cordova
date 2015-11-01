@@ -49,6 +49,199 @@ angular.module('starter.services', [])
   };
 })
 
+.factory('Products', function() {
+  // Products
+  var products = [{
+    id: 0,
+    title: 'Пальто, полупальто зимние',
+    titleLong: 'с подкладкой, в т.ч. из искусственного меха, и утепляющей прокладкой',
+    checked: false,
+    groupRates: [{
+      group: 1,
+      timeCutting: 3.35,
+      timeSewing: 33.66
+    }, {
+      group: 2,
+      timeCutting: 2.9,
+      timeSewing: 29.48
+    }, {
+      group: 3,
+      timeCutting: 2.88,
+      timeSewing: 22.18
+    }
+    ]
+  }, {
+    id: 1,
+    title: 'Жакет зимний',
+    titleLong: 'с подкладкой, в т. ч. из искусственного меха, и утепляющей прокладкой',
+    checked: false,
+    groupRates: [{
+      group: 1,
+      timeCutting: 2.64,
+      timeSewing: 25.5
+    }, {
+      group: 2,
+      timeCutting: 2.28,
+      timeSewing: 22.46
+    }, {
+      group: 3,
+      timeCutting: 2.1,
+      timeSewing: 17
+    }
+    ]
+  }, {
+    id: 2,
+    title: 'Пальто, полупальто с подкладкой',
+    titleLong: 'демисезонные, летние, плащ',
+    checked: false,
+    groupRates: [{
+      group: 1,
+      timeCutting: 3.25,
+      timeSewing: 29.05
+    }, {
+      group: 2,
+      timeCutting: 2.81,
+      timeSewing: 25.48
+    }, {
+      group: 3,
+      timeCutting: 2.4,
+      timeSewing: 19.1
+    }, {
+      group: 4,
+      timeCutting: 2.12,
+      timeSewing: 16.8
+    }
+    ]
+  }, {
+    id: 3,
+    title: 'Пальто, полупальто с подкладкой',
+    titleLong: 'демисезонные, летние, плащ',
+    checked: false,
+    groupRates: [{
+      group: 1,
+      timeCutting: 3.25,
+      timeSewing: 29.05
+    }, {
+      group: 2,
+      timeCutting: 2.81,
+      timeSewing: 25.48
+    }, {
+      group: 3,
+      timeCutting: 2.4,
+      timeSewing: 19.1
+    }, {
+      group: 4,
+      timeCutting: 2.12,
+      timeSewing: 16.8
+    }
+    ]
+  }, {
+    id: 4,
+    title: 'Пальто, полупальто с подкладкой',
+    titleLong: 'демисезонные, летние, плащ',
+    checked: false,
+    groupRates: [{
+      group: 1,
+      timeCutting: 3.25,
+      timeSewing: 29.05
+    }, {
+      group: 2,
+      timeCutting: 2.81,
+      timeSewing: 25.48
+    }, {
+      group: 3,
+      timeCutting: 2.4,
+      timeSewing: 19.1
+    }, {
+      group: 4,
+      timeCutting: 2.12,
+      timeSewing: 16.8
+    }
+    ]
+  }, {
+    id: 5,
+    title: 'Пальто, полупальто с подкладкой',
+    titleLong: 'демисезонные, летние, плащ',
+    checked: false,
+    groupRates: [{
+      group: 1,
+      timeCutting: 3.25,
+      timeSewing: 29.05
+    }, {
+      group: 2,
+      timeCutting: 2.81,
+      timeSewing: 25.48
+    }, {
+      group: 3,
+      timeCutting: 2.4,
+      timeSewing: 19.1
+    }, {
+      group: 4,
+      timeCutting: 2.12,
+      timeSewing: 16.8
+    }
+    ]
+  }, {
+    id: 6,
+    title: 'Пальто, полупальто с подкладкой',
+    titleLong: 'демисезонные, летние, плащ',
+    checked: false,
+    groupRates: [{
+      group: 1,
+      timeCutting: 3.25,
+      timeSewing: 29.05
+    }, {
+      group: 2,
+      timeCutting: 2.81,
+      timeSewing: 25.48
+    }, {
+      group: 3,
+      timeCutting: 2.4,
+      timeSewing: 19.1
+    }, {
+      group: 4,
+      timeCutting: 2.12,
+      timeSewing: 16.8
+    }
+    ]
+  }, {
+    id: 7,
+    title: 'Пальто, полупальто с подкладкой',
+    titleLong: 'демисезонные, летние, плащ',
+    checked: false,
+    groupRates: [{
+      group: 1,
+      timeCutting: 3.25,
+      timeSewing: 29.05
+    }, {
+      group: 2,
+      timeCutting: 2.81,
+      timeSewing: 25.48
+    }, {
+      group: 3,
+      timeCutting: 2.4,
+      timeSewing: 19.1
+    }, {
+      group: 4,
+      timeCutting: 2.12,
+      timeSewing: 16.8
+    }
+    ]
+  }];
+
+  return {
+    all: function(){
+      return JSON.parse(localStorage.getItem('products')) || products;
+    },
+    save: function(p){
+      localStorage.setItem('products',JSON.stringify(p));
+    },
+    reset: function(){
+      localStorage.removeItem('products');
+    }
+  }
+})
+
 .factory('Fabrics', function() {
     // Might use a resource here that returns a JSON array
 

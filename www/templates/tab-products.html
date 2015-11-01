@@ -1,0 +1,21 @@
+<ion-view view-title="Products">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item item-toggle item-text-wrap" ng-repeat="p in products">
+        <h2>{{p.title}}</h2>
+        <p>{{p.titleLong}}</p>
+        <label class="toggle toggle-positive">
+          <input type="checkbox" ng-model="p.checked" ng-change="doToggle(p)">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <div class="bar bar-footer" ng-show="(products | filter:{checked:true}).length > 0">
+    <button class="button button-assertive" ng-click="reset()">
+      Reset selected {{(products | filter:{checked:true}).length }}
+    </button>
+  </div>
+</ion-view>

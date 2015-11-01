@@ -2,6 +2,20 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
+.controller('ProductsCtrl', function($scope, Products, $ionicListDelegate){
+  $scope.products = Products.all();
+  $scope.doToggle = function(product){
+    Products.save($scope.products);
+  };
+
+  $scope.reset = function(){
+      Products.reset();
+      angular.forEach($scope.products,function(v){
+        v.checked = false;
+      });
+    };
+  })
+
 .controller('FabricsCtrl', function($scope, Fabrics, $ionicListDelegate) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -16,7 +30,7 @@ angular.module('starter.controllers', [])
       localStorage.setItem('fabric',JSON.stringify(fabric));
       $ionicListDelegate.closeOptionButtons();
     };
-    $scope.isChoosen = function(fabric) {
+    $scope.isChosen = function(fabric) {
       var f = JSON.parse(localStorage.getItem('fabric') || '{}');
 
       if( typeof f.id === "undefined" ){
