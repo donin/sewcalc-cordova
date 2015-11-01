@@ -3,18 +3,49 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {})
 
 .controller('ProductsCtrl', function($scope, Products, $ionicListDelegate){
-  $scope.products = Products.all();
-  $scope.doToggle = function(product){
-    Products.save($scope.products);
+    $scope.products = Products.all();
+
+    $scope.choose = function(product) {
+      // Reset old selection
+      Products.reset();
+
+      // Renew products in scope
+      $scope.products = Products.all();
+
+      // Check new one
+      product.checked=true;
+
+      // Save to local storage
+      Products.save(product);
+
+      $ionicListDelegate.closeOptionButtons();
+    };
+
+  })
+
+.controller('ExtrasCtrl', function($scope, Extras, $ionicListDelegate){
+  $scope.extras = Extras.all();
+  $scope.doToggle = function(){
+    Extras.save($scope.extras);
   };
 
   $scope.reset = function(){
-      Products.reset();
-      angular.forEach($scope.products,function(v){
-        v.checked = false;
-      });
-    };
-  })
+    Extras.reset();
+    angular.forEach($scope.extras,function(v){
+      v.num = 0;
+    });
+  };
+
+  $scope.increase = function(x){
+    x.num++;
+  };
+
+  $scope.decrease = function(x){
+    if(x.num>0) {
+      x.num--;
+    }
+  };
+})
 
 .controller('FabricsCtrl', function($scope, Fabrics, $ionicListDelegate) {
     // With the new view caching in Ionic, Controllers are only called

@@ -1,0 +1,31 @@
+<ion-view view-title="Extra options">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item item-text-wrap" ng-repeat="x in extras">
+
+        <!-- <div class="buttons">
+          <button class="button button-positive">
+            <i class="icon ion-arrow-up-a"></i>
+          </button>
+
+          <button class="button button-assertive">
+            <i class="icon ion-arrow-down-a"></i>
+          </button>
+        </div> -->
+
+        <h2>{{x.title}}</h2>
+        <p>{{x.titleLong}}</p>
+        <span class="badge badge-positive">{{x.num}}</span>
+
+
+        <ion-option-button class="button button-balanced" ng-click="increase(x);"><i class="icon ion-arrow-up-a"></i></ion-option-button>
+        <ion-option-button class="button button-calm" ng-click="decrease(x);"><i class="icon ion-arrow-down-a"></i></ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <div class="bar bar-footer">
+    <button class="button button-assertive" ng-click="reset();">
+      Reset selected
+    </button>
+  </div>
+</ion-view>

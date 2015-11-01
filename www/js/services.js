@@ -231,13 +231,39 @@ angular.module('starter.services', [])
 
   return {
     all: function(){
-      return JSON.parse(localStorage.getItem('products')) || products;
+      var p = JSON.parse(localStorage.getItem('product') || '{}');
+      angular.forEach(products,function(v){
+        v.checked = v.id == p.id;
+      });
+      return products;
     },
     save: function(p){
-      localStorage.setItem('products',JSON.stringify(p));
+      localStorage.setItem('product',JSON.stringify(p));
     },
     reset: function(){
-      localStorage.removeItem('products');
+      localStorage.removeItem('product');
+    }
+  }
+})
+
+.factory('Extras', function() {
+
+  var extras = [{
+    id: 0,
+    title: 'Рельефы, бочки, швы клиньев',
+    titleLong: 'Рельефы или отрезные бочки, или швы в изделии включая швы клиньев, ­ не более двух',
+    num: 1
+  }];
+
+  return {
+    all: function(){
+      return JSON.parse(localStorage.getItem('extras')) || extras;
+    },
+    save: function(x){
+      localStorage.setItem('extras',JSON.stringify(x));
+    },
+    reset: function(){
+      localStorage.removeItem('extras');
     }
   }
 })
