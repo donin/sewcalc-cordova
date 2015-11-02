@@ -20,6 +20,6 @@ TODO:
   * Save calculation results in the cloud
 
 Know bugs:
-  * Extras didn't change when product type changed
+  * Extras didn't change when product type has changed
   
   
