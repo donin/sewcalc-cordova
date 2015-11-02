@@ -1,10 +1,11 @@
 <ion-view view-title="Fabrics by types">
   <ion-content>
     <ion-list>
-      <ion-item class="item item-text-wrap item-icon-left" ng-repeat="f in fabrics">
+      <ion-item ng-click="(f.showmore=f.showmore?false:true)" class="item item-text-wrap item-icon-left" ng-repeat="f in fabrics">
         <i class="icon ion-checkmark-circled ng-hide" ng-show="f.checked"></i>
         <h2>{{f.title}}</h2>
-        <p>{{f.desc}}</p>
+        <p ng-show="!f.showmore">{{f.titleLong}}</p>
+        <p ng-show="f.showmore">{{f.desc}}</p>
         <ion-option-button class="button button-positive ion-checkmark-round" ng-click="choose(f);"></ion-option-button>
       </ion-item>
     </ion-list>

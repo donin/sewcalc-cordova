@@ -1,26 +1,18 @@
 <ion-view view-title="Products & time rates">
   <ion-content>
 
-    <div ng-show="error" class="list card">
-      <div class="item item-divider">Fabric type</div>
-      <div class="item item-body">
-        <div>
-          <b>{{error}}</b>
-        </div>
-      </div>
-    </div>
-
-    <ion-list ng-show="!error">
-      <ion-item class="item item-icon-left item-text-wrap" ng-repeat="p in products">
+    <ion-list>
+      <ion-item ng-click="(p.showmore=p.showmore?false:true)"
+                class="item item-icon-left item-text-wrap"
+                ng-repeat="p in products">
         <i class="icon ion-checkmark-circled ng-hide" ng-show="p.checked"></i>
         <h2>{{p.title}}</h2>
-        <p>{{p.titleLong}}</p>
-        <p>Крой: {{p.groupRate.timeCutting}}, пошив: {{p.groupRate.timeSewing}}</p>
+        <p ng-show="p.showmore">{{p.titleLong}}</p>
         <ion-option-button class="button button-positive ion-checkmark-round" ng-click="choose(p);"></ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
-  <ion-footer-bar align-title="right" class="bar-balanced">
-      <h6>Фильтр типа ткани: {{fabric.title}}</h6>
+  <ion-footer-bar align-title="right" class="bar-balanced" ng-show="fabric">
+      <h6>Ткань: {{fabric.title}}</h6>
   </ion-footer-bar>
 </ion-view>

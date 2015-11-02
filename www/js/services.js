@@ -1,8 +1,8 @@
 angular.module('starter.services', [])
 
+// My Data services
+.factory('DataService', function() {
 
-// Product types
-.factory('Products', function() {
     /**
      *
      * Extra groups
@@ -18,13 +18,12 @@ angular.module('starter.services', [])
       shirt: {group: 4, title: 'Рубашка'}
     };
 
-
-
   var products = [{
     id: 0,
     title: 'Пальто, полупальто зимние',
     titleLong: 'с подкладкой, в т.ч. из искусственного меха, и утепляющей прокладкой',
     checked: false,
+    filterGroups:[0,1,2,3],
     groupRates: [{
       group: 1, // fabricGroup
       timeCutting: 3.35,
@@ -45,6 +44,7 @@ angular.module('starter.services', [])
     title: 'Жакет зимний',
     titleLong: 'с подкладкой, в т. ч. из искусственного меха, и утепляющей прокладкой',
     checked: false,
+    filterGroups:[0,1,2,3],
     groupRates: [{
       group: 1,
       timeCutting: 2.64,
@@ -65,6 +65,7 @@ angular.module('starter.services', [])
     title: 'Пальто, полупальто с подкладкой',
     titleLong: 'демисезонные, летние, плащ',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 3.25,
@@ -89,6 +90,7 @@ angular.module('starter.services', [])
     title: 'Пальто, полупальто без подкладки',
     titleLong: 'летние, плащ',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 2.10,
@@ -113,6 +115,7 @@ angular.module('starter.services', [])
     title: 'Пиджак с подкладкой',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3],
     groupRates: [{
       group: 1,
       timeCutting: 2.76,
@@ -133,6 +136,7 @@ angular.module('starter.services', [])
     title: 'Пиджак без подкладки',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3],
     groupRates: [{
       group: 1,
       timeCutting: 1.88,
@@ -153,6 +157,7 @@ angular.module('starter.services', [])
     title: 'Жакет с подкладкой',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3],
     groupRates: [{
       group: 1,
       timeCutting: 2.60,
@@ -173,6 +178,7 @@ angular.module('starter.services', [])
     title: 'Жакет без подкладки',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3],
     groupRates: [{
       group: 1,
       timeCutting: 1.95,
@@ -193,6 +199,7 @@ angular.module('starter.services', [])
     title: 'Куртка с подкладкой',
     titleLong: 'в т.ч.из искусственного меха, и утепляющей прокладкой',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 2.38,
@@ -217,6 +224,7 @@ angular.module('starter.services', [])
     title: 'Куртка с подкладкой',
     titleLong: 'без утепляющей прокладки',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 2.19,
@@ -241,6 +249,7 @@ angular.module('starter.services', [])
     title: 'Куртка без подкладки',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 1.67,
@@ -265,6 +274,7 @@ angular.module('starter.services', [])
     title: 'Жилет с подкладкой',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 0.82,
@@ -289,6 +299,7 @@ angular.module('starter.services', [])
     title: 'Жилет без подкладки',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 0.68,
@@ -313,6 +324,7 @@ angular.module('starter.services', [])
     title: 'Жилет разных фасонов',
     titleLong: 'со стеганым верхом насквозь с подкладкой и утепляющей прокладкой',
     checked: false,
+    filterGroups:[2,3,4],
     groupRates: [{
       group: 2,
       timeCutting: 0.71,
@@ -333,6 +345,7 @@ angular.module('starter.services', [])
     title: 'Жилет под пиджак',
     titleLong: 'смокинг, фрак, визитку (разных фасонов, со спинкой из подкладочной или основной ткани)',
     checked: false,
+    filterGroups:[0,1,2,3],
     groupRates: [{
       group: 1,
       timeCutting: 0.75,
@@ -353,6 +366,7 @@ angular.module('starter.services', [])
     title: 'Жилет разных фасонов',
     titleLong: 'с подкладкой из натурального меха, без подбортов',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 0.47,
@@ -377,6 +391,7 @@ angular.module('starter.services', [])
     title: 'Жилет разных фасонов',
     titleLong: 'с подкладкой из искусственного меха, без подбортов',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 0.43,
@@ -401,6 +416,7 @@ angular.module('starter.services', [])
     title: 'Брюки мужские',
     titleLong: 'длинные и укороченные – длиной ниже коленей (с подкладкой под передние половинки и без подкладки)',
     checked: false,
+    filterGroups:[0,1,2,3],
     groupRates: [{
       group: 1,
       timeCutting: 0.93,
@@ -421,6 +437,7 @@ angular.module('starter.services', [])
     title: 'Брюки женские',
     titleLong: 'длинные и укороченные – длиной ниже коленей (с подкладкой под передние половинки и без подкладки)',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 0.91,
@@ -445,6 +462,7 @@ angular.module('starter.services', [])
     title: 'Брюки мужские и женские',
     titleLong: 'с утепляющей прокладкой и подкладкой',
     checked: false,
+    filterGroups:[2,3],
     groupRates: [{
       group: 2,
       timeCutting: 1.04,
@@ -461,6 +479,7 @@ angular.module('starter.services', [])
     title: 'Шорты мужские и женские',
     titleLong: 'разных фасонов, с подкладкой и без подкладки',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 0.64,
@@ -485,6 +504,7 @@ angular.module('starter.services', [])
     title: 'Комбинезон без подкладки',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 1.55,
@@ -509,6 +529,7 @@ angular.module('starter.services', [])
     title: 'Полукомбинезон',
     titleLong: 'с бретелями и нагрудником, брюки длинные с подкладкой под передние половинки и без подкладки',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 1.26,
@@ -533,6 +554,7 @@ angular.module('starter.services', [])
     title: 'Юбка без подкладки',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 0.80,
@@ -557,6 +579,7 @@ angular.module('starter.services', [])
     title: 'Платье, сарафан',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 2.27,
@@ -581,6 +604,7 @@ angular.module('starter.services', [])
     title: 'Халат',
     titleLong: '',
     checked: false,
+    filterGroups:[2,3,4],
     groupRates: [{
       group: 2,
       timeCutting: 2.11,
@@ -601,6 +625,7 @@ angular.module('starter.services', [])
     title: 'Чехол под платье',
     titleLong: 'разной длины',
     checked: false,
+    filterGroups:[2,3,4],
     groupRates: [{
       group: 2,
       timeCutting: 1.12,
@@ -621,6 +646,7 @@ angular.module('starter.services', [])
     title: 'Юбка нижняя',
     titleLong: 'разной длины',
     checked: false,
+    filterGroups:[2,3,4],
     groupRates: [{
       group: 2,
       timeCutting: 0.94,
@@ -641,6 +667,7 @@ angular.module('starter.services', [])
     title: 'Блузка',
     titleLong: '',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 1.80,
@@ -665,6 +692,7 @@ angular.module('starter.services', [])
     title: 'Верхняя сорочка',
     titleLong: 'блуза',
     checked: false,
+    filterGroups:[0,1,2,3,4],
     groupRates: [{
       group: 1,
       timeCutting: 0.73,
@@ -685,58 +713,6 @@ angular.module('starter.services', [])
     ],
     extraGroup: eg.shirt.group
   }];
-
-  return {
-    all: function(group){
-
-      // filter product by fabric type group
-      var filterProducts = [];
-      angular.forEach(products,function(v){
-        angular.forEach(v.groupRates,function(g){
-
-          // zero group is equal to first one
-          // plus rate*1.2
-          if(g.group == group || group == 0 && g.group == 1){
-            v.groupRate = g;
-            filterProducts.push(v);
-          }
-        });
-      });
-
-      var p = JSON.parse(localStorage.getItem('product') || '{}');
-      angular.forEach(filterProducts,function(v){
-        v.checked = v.id == p.id;
-      });
-      return filterProducts;
-    },
-    save: function(p){
-      localStorage.setItem('product',JSON.stringify(p));
-    },
-    get: function(){
-      return JSON.parse(localStorage.getItem('product') || '{}');
-    },
-    reset: function(){
-      localStorage.removeItem('product');
-    }
-  }
-})
-
-.factory('Extras', function() {
-
-    /**
-     *
-     * Extra groups
-     * 1 - coat
-     * 2 - pants
-     * 3 - dress
-     * 4 - blouse
-     */
-    var eg = {
-      coat: {group: 1, title: 'Плащи'},
-      pants: {group: 2, title: 'Штаны' },
-      dress: {group: 3, title: 'Платья'},
-      shirt: {group: 4, title: 'Рубашка'}
-    };
 
   var extras = [{
     id: 0,
@@ -1307,124 +1283,142 @@ angular.module('starter.services', [])
     extraGroups: [eg.coat.group,eg.dress.group]
 }];
 
-  return {
-    all: function(extraGroup){
-
-      // if exists in storage get it
-      var storedExtra = JSON.parse(localStorage.getItem('extras') || '[]');
-      if( angular.isArray(storedExtra) && storedExtra.length>0 ){
-        console.log("Get extras from storage! "+ angular.toJson(storedExtra));
-        return storedExtra;
-      }
-
-      if( typeof extraGroup === "undefined" ){
-        console.log("Return ALL extras array");
-        return extras;
-      }
-
-      var chosenExtras = [];
-      angular.forEach(extras,function(v){
-        if( v.extraGroups.indexOf(extraGroup) > -1 ){
-          chosenExtras.push(v);
-        }
-      });
-
-      return  chosenExtras;
-    },
-    save: function(x){
-      localStorage.setItem('extras',JSON.stringify(x));
-    },
-    get: function(){
-      var chosenExtras = [];
-      angular.forEach(this.all(),function(v){
-        if( v.num >0 ) {
-          chosenExtras.push(v);
-        }
-      });
-      return chosenExtras;
-    },
-    reset: function(){
-      localStorage.removeItem('extras');
-      console.log("reset Extras in service!");
-    },
-    getexgroup: function(group){
-      var extraGroup = null;
-      angular.forEach(eg,function(v){
-        if( parseInt(v.group) == parseInt(group)){
-          extraGroup = v;
-        }
-      });
-      return extraGroup;
-    }
+  // Fabrics array
+  var fabrics = [{
+    id: 0,
+    title: 'Шелковый бархат',
+    titleLong: '',
+    desc: 'На шелковой и хлопчатобумажной основе, вельвет синтетический; ткани со сплошным\
+    застилом бисером , другие материалы, аналогичные по трудоемкости обработки.',
+    group: 0,
+    checked: false,
+    showmore: false
+  }, {
+    id: 1,
+    title: 'Натуральные',
+    titleLong: 'кожа, замша, парча',
+    desc: 'кожа, замша;  парча и шерстяные, шелковые материалы с содержанием металлических нитей;\
+      шелковые: кружевные полотна, гипюр, шитье, шифон;  шерстяной габардин для всех видов одежды;\
+      хлопчатобумажный бархат;  синтетические ткани и трикотажные полотна с ворсовой поверхностью;  другие\
+      материалы, аналогичные по трудоемкости обработки.',
+    group: 1,
+    checked: false,
+    showmore: false
+  }, {
+    id: 2,
+    title: 'Шерстяные ткани',
+    titleLong: 'кроме габардина',
+    desc: 'кроме габардина; в том числе с содержанием синтетических волокон;\
+     искусственный мех; Шерстяные ткани (кроме габардина); в том числе с содержанием синтетических волокон;\
+     искусственный мех; трикотажные полотна;  искусственные: кожа, замша;\
+     плащевые ткани (кроме синтетических тканей с пленочным покрытием типа «болонья»);\
+     эластичные материалы, стеганые полотна;  шерстяные и шелковые нетканые текстильные материалы;\
+     хлопчатобумажные: кружевные полотна, гипюр, шитье, вельвет, габардин, джинсовая ткань,\
+     кирза и ткани с содержанием металлических нитей; другие материалы, аналогичные по трудоемкости обработки.',
+    group: 2,
+    checked: false,
+    showmore: false
+  }, {
+    id: 3,
+    title: 'Хлопчатобумажные и льняные',
+    titleLong: 'пальтовые, костюмные ткани',
+    desc: 'пальтовые, костюмные ткани и нетканые текстильные материалы; \
+    дублированные материалы;  хлопчатобумажные ткани: типа батиста, маркизета, махровая ткань,\
+    синтетические ткани с пленочным покрытием типа «болонья»;  другие материалы, аналогичные по трудоемкости обработки.',
+    group: 3,
+    checked: false,
+    showmore: false
+  }, {
+    id: 4,
+    title: 'Хлопчатобумажные и льняные',
+    titleLong: 'плательные, сорочечные и корсетные',
+    desc: 'плательные, сорочечные и корсетные ткани и нетканые текстильные ' +
+    'материалы;  другие материалы, аналогичные по трудоемкости обработки.',
+    group: 4,
+    checked: false,
+    showmore: false
   }
-})
+  ];
 
-.factory('Fabrics', function() {
-    // Might use a resource here that returns a JSON array
-
-    // Fabrics array
-    var fabrics = [{
-      id: 0,
-      title: 'Шелковый бархат',
-      desc: 'На шелковой и хлопчатобумажной основе, вельвет синтетический; ткани со сплошным\
-      застилом бисером , другие материалы, аналогичные по трудоемкости обработки.',
-      group: 0,
-      checked: false
-    }, {
-      id: 1,
-      title: 'Натуральные',
-      desc: 'кожа, замша;  парча и шерстяные, шелковые материалы с содержанием металлических нитей;\
-        шелковые: кружевные полотна, гипюр, шитье, шифон;  шерстяной габардин для всех видов одежды;\
-        хлопчатобумажный бархат;  синтетические ткани и трикотажные полотна с ворсовой поверхностью;  другие\
-        материалы, аналогичные по трудоемкости обработки.',
-      group: 1,
-      checked: false
-    }, {
-      id: 2,
-      title: 'Шерстяные ткани',
-      desc: 'кроме габардина; в том числе с содержанием синтетических волокон;\
-       искусственный мех; Шерстяные ткани (кроме габардина); в том числе с содержанием синтетических волокон;\
-       искусственный мех; трикотажные полотна;  искусственные: кожа, замша;\
-       плащевые ткани (кроме синтетических тканей с пленочным покрытием типа «болонья»);\
-       эластичные материалы, стеганые полотна;  шерстяные и шелковые нетканые текстильные материалы;\
-       хлопчатобумажные: кружевные полотна, гипюр, шитье, вельвет, габардин, джинсовая ткань,\
-       кирза и ткани с содержанием металлических нитей; другие материалы, аналогичные по трудоемкости обработки.',
-      group: 2,
-      checked: false
-    }, {
-      id: 3,
-      title: 'Хлопчатобумажные и льняные',
-      desc: 'пальтовые, костюмные ткани и нетканые текстильные материалы; \
-      дублированные материалы;  хлопчатобумажные ткани: типа батиста, маркизета, махровая ткань,\
-      синтетические ткани с пленочным покрытием типа «болонья»;  другие материалы, аналогичные по трудоемкости обработки.',
-      group: 3,
-      checked: false
-    }, {
-      id: 4,
-      title: 'Хлопчатобумажные и льняные',
-      desc: 'плательные, сорочечные и корсетные ткани и нетканые текстильные ' +
-      'материалы;  другие материалы, аналогичные по трудоемкости обработки.',
-      group: 4,
-      checked: false
-    }
-    ];
-
-    return {
-      all: function(){
-        var f = JSON.parse(localStorage.getItem('fabric') || '{}');
-        angular.forEach(fabrics,function(v){
-          v.checked = v.id == f.id;
-        });
-        return fabrics;
-      },
-      get: function(){
-        return JSON.parse(localStorage.getItem('fabric') || '{}');
-      },
-      save: function(f){
-        localStorage.setItem('fabric',JSON.stringify(f));
-      },
-      reset: function(){
-        localStorage.removeItem('fabric');
+  return {
+    getProducts: function(){
+      return products;
+    },
+    getFabrics: function(){
+      return fabrics;
+    },
+    getExtras: function(){
+      return extras;
+    },
+    resetFabrics: function(){
+      return angular.forEach(fabrics, function(v){
+        if( v.checked == true ) {
+          v.checked = false;
+        }
+      });
+    },
+    resetProducts: function(){
+      return angular.forEach(products, function(v){
+        if( v.checked == true ) {
+          v.checked = false;
+        }
+      });
+    },
+    resetExtras: function(){
+      return angular.forEach(extras, function(v){
+        if( v.num >0 ) {
+          v.num = 0;
+        }
+      });
+    },
+    storedFabric: function(){
+      return angular.fromJson(localStorage.getItem('fabric'));
+    },
+    storeFabric: function(fabric){
+      return localStorage.setItem('fabric',angular.toJson(fabric));
+    },
+    storedProduct: function(){
+      return angular.fromJson(localStorage.getItem('product'));
+    },
+    storedExtras: function(){
+      return angular.fromJson(localStorage.getItem('extras'));
+    },
+    storeProduct: function(product){
+      if( typeof product === "undefined" ){
+        localStorage.removeItem('product');
+        return true;
       }
-    };
-  });
+      return localStorage.setItem('product',angular.toJson(product));
+    },
+    storeExtras: function(ex){
+      if( typeof ex === "undefined" ){
+        localStorage.removeItem('extras');
+        return true;
+      }
+      var selectedExtras = [];
+      angular.forEach(extras,function(v){
+        if(v.num>0){
+          selectedExtras.push(v);
+        }
+      });
+      return localStorage.setItem('extras',angular.toJson(selectedExtras));
+    },
+    getExtraGroupTitle: function(id){
+      if( id == 1 ){
+        return eg.coat.title;
+      }
+
+      if( id == 2 ){
+        return eg.pants.title;
+      }
+
+      if( id == 3 ){
+        return eg.dress.title;
+      }
+
+      if( id == 4 ){
+        return eg.shirt.title;
+      }
+    }
+  };
+});

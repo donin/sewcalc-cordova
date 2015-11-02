@@ -1,22 +1,13 @@
 <ion-view view-title="Extra options">
   <ion-content>
 
-    <div ng-show="error" class="list card">
-      <div class="item item-divider">Product type</div>
-      <div class="item item-body">
-        <div>
-          <b>{{error}}</b>
-        </div>
-      </div>
-    </div>
-
-
-    <ion-list ng-show="!error">
-      <ion-item class="item item-text-wrap" ng-repeat="x in extras">
+    <ion-list>
+      <ion-item class="item item-text-wrap"
+                ng-repeat="x in extras">
 
         <h2>{{x.title}}</h2>
         <p>{{x.titleLong}}</p>
-        <span class="badge badge-positive">{{x.num}}</span>
+        <span ng-show="(x.num>0)" class="badge badge-positive">{{x.num}}</span>
 
 
         <ion-option-button class="button button-balanced" ng-click="increase(x);"><i class="icon ion-arrow-up-a"></i></ion-option-button>
@@ -24,12 +15,11 @@
       </ion-item>
     </ion-list>
   </ion-content>
-  <ion-footer-bar class="bar-clear" >
-    <button class="button button-calm" >
-      Filter: {{extraGroupFilter.title}}
-    </button>
-    <button class="button button-assertive" ng-click="reset();">
+  <ion-footer-bar class="bar-balanced" >
+    <button class="button button-clear" ng-click="reset();">
       <i class="icon ion-refresh"></i>
     </button>
+      <h6>Filter: {{extraGroupTitle}}</h6>
+
   </ion-footer-bar>
 </ion-view>

@@ -1,109 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('ProductsCtrl', function($scope, Products, Fabrics, Extras, $ionicListDelegate){
-
-    // Events
 
 
-    $scope.error = null;
-    $scope.fabric = Fabrics.get();
-
-    console.log("Fabric group:" + $scope.fabric.group);
-
-    // No fabric group - no product types
-    if( typeof $scope.fabric.group === "undefined"  ){
-      console.log("Fabric group is undefined!:" + $scope.fabric.group);
-      $scope.error = 'Please choose fabric type first';
-      return false;
-    }
-
-    $scope.products = Products.all($scope.fabric.group);
-    if( typeof $scope.products === "undefined" || $scope.products.length ==0 ){
-      console.log("Products list are empty!");
-      $scope.error = 'Products are not found. Please choose fabric.';
-      return false;
-    }
-
-    console.log("Total products:" + $scope.products.length);
-    $scope.choose = function(product) {
-      // Reset old selection
-      Products.reset();
-      Extras.reset();
-      console.log("Reset extras in storage!" + angular.toJson(localStorage.getItem('extras')));
-
-
-      // Renew products in scope
-      $scope.products = Products.all($scope.fabric.group);
-
-      // Check new one
-      product.checked=true;
-
-      // Save to local storage
-      Products.save(product);
-
-      $ionicListDelegate.closeOptionButtons();
-    };
-
-  })
-
-.controller('ExtrasCtrl', function($scope, Extras, Products, $filter, $ionicListDelegate){
-
-    console.log("I'm in Extras controller!");
-
-    angular.forEach($scope.extras,function(v){
-      v.num = 0;
-    });
-
-    $scope.error = null;
-    $scope.product = Products.get();
-
-    console.log("Product extra group:" + $scope.product.extraGroup);
-
-    // No extra group - no extras
-    if( typeof $scope.product.extraGroup === "undefined"  ){
-      console.log("Extra group is undefined!:" + $scope.product.extraGroup);
-      $scope.error = 'Please choose product type first';
-      return false;
-    }
-
-   $scope.extraGroupFilter = Extras.getexgroup($scope.product.extraGroup);
-    console.log("Extra group: " + angular.toJson($scope.extraGroupFilter));
-
-
-
-  $scope.extras = Extras.all($scope.product.extraGroup);
-  if( typeof $scope.extras === "undefined" || $scope.extras.length ==0 ){
-    console.log("Extras list are empty!");
-    $scope.error = 'Extras are not found. Please choose product type.';
-    return false;
-  }
-
-  // order list
-  $scope.extras = $filter('orderBy')($scope.extras, 'num', true);
-
-  console.log("Total extras:" + $scope.extras.length);
-
-  $scope.doToggle = function(){
-    Extras.save($scope.extras);
-  };
-
-  $scope.reset = function(){
-    Extras.reset();
-    angular.forEach($scope.extras,function(v){
-      v.num = 0;
-    });
-  };
-
-  $scope.increase = function(x){
-    x.num++;
-  };
-
-  $scope.decrease = function(x){
-    if(x.num>0) {
-      x.num--;
-    }
-  };
-})
 
 .controller('CalcCtrl', function($scope, Fabrics, Products, Extras, $filter){
     $scope.storedFabric = Fabrics.get();
@@ -167,25 +65,167 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('FabricsCtrl', function($scope, Fabrics, Products, Extras, $ionicListDelegate) {
-    $scope.fabrics = Fabrics.all();
-
-    $scope.choose = function(fabric) {
-      // Reset old selection
-      Fabrics.reset();
-      Products.reset();
-      Extras.reset();
+.controller('FabricsCtrl', function($scope, DataService, $filter, $ionicListDelegate) {
+    DataService.resetFabrics();
+    $scope.fabrics = DataService.getFabrics();
 
 
-      // Renew in scope
-      $scope.fabrics = Fabrics.all();
+    // Restore fabric selection
+    var storedFabric = DataService.storedFabric();
+    if( storedFabric ) {
+      angular.forEach($scope.fabrics, function (v) {
+        if (v.id == storedFabric.id) {
+          v.checked = true;
+        }
+      });
+    }
 
-      // Check new one
-      fabric.checked=true;
+    // Choose only one element at same time
+    $scope.choose = function(f){
 
-      // Save to local storage
-      Fabrics.save(fabric);
+      // Reset checked status on all fabrics
+      DataService.resetFabrics();
+      // Remove selected product from local storage
+      DataService.storeProduct();
 
+      // Set checked flag on current fabric
+      f.checked = true;
+
+      // Store fabric in Local Storage service
+      DataService.storeFabric(f);
+
+      // Close option buttons
       $ionicListDelegate.closeOptionButtons();
+
+      // I don't sure if I need to do it =)
+      //$scope.$digest();
+    }
+})
+
+.controller('ProductsCtrl', function($scope, DataService, $filter, $ionicListDelegate){
+
+  // Get fabric object stored in local storage
+  $scope.fabric = DataService.storedFabric();
+  console.log("fabric group: " + $scope.fabric.group);
+
+
+  /**
+   * Filter products by fabric group
+   * @param products
+   * @param fabric
+   * @returns {*}
+   */
+  $scope.filter = function(products,fabric){
+    return $filter('filter')(products,function(v){
+
+      if (v.filterGroups.indexOf(fabric.group) > -1){
+        console.log("v: " + angular.toJson(v.filterGroups));
+        return true;
+      }
+      return false;
+    });
+  };
+
+  // Reset products selection
+  DataService.resetProducts();
+
+  // Filter products
+  $scope.products = $scope.filter(DataService.getProducts(),$scope.fabric);
+
+  // Restore product selection
+  var storedProduct = DataService.storedProduct();
+  if( storedProduct ) {
+    angular.forEach($scope.products, function (v) {
+      if (v.id == storedProduct.id) {
+        v.checked = true;
+      }
+    });
+  }
+
+
+  // Choose only one element at same time
+  $scope.choose = function(p){
+
+    // Reset checked status on all products
+    DataService.resetProducts();
+    // Clear extras in local storage
+    DataService.storeExtras();
+
+    // Set checked flag on current product
+    p.checked = true;
+
+    // Store product in Local Storage service
+    DataService.storeProduct(p);
+
+    // Close option buttons
+    $ionicListDelegate.closeOptionButtons();
+
+    // I don't sure if I need to do it =)
+    //$scope.$digest();
+  }
+
+
+
+})
+
+.controller('ExtrasCtrl', function($scope, DataService, $filter, $ionicListDelegate){
+
+    // Get Product object stored in local storage
+    $scope.product = DataService.storedProduct();
+    $scope.extraGroupTitle = DataService.getExtraGroupTitle($scope.product.extraGroup);
+    console.log("product extra group: " + $scope.product.extraGroup);
+
+    /**
+     * Filter extras by product extra group
+     * @param extras
+     * @param group
+     * @returns {*}
+     */
+    $scope.filter = function(extras,group){
+      return $filter('filter')(extras,function(v){
+
+        if (v.extraGroups.indexOf(group) > -1){
+          console.log("v: " + angular.toJson(v.extraGroups));
+          return true;
+        }
+        return false;
+      });
     };
-  });
+
+    // Reset extras selection
+    DataService.resetExtras();
+
+    // Filter extras
+    $scope.extras = $scope.filter(DataService.getExtras(),$scope.product.extraGroup);
+
+
+    // Restore extras selection
+    var storedExtras = DataService.storedExtras();
+    console.log("storedExtras: "+ angular.toJson(storedExtras));
+    if( storedExtras ) {
+      angular.forEach(storedExtras, function (v) {
+        angular.forEach($scope.extras, function(ex){
+          if(v.id == ex.id ){
+            ex.num = v.num;
+          }
+        });
+      });
+    }
+
+    $scope.increase = function(ex){
+      ex.num++;
+      DataService.storeExtras($scope.extras);
+    };
+
+    $scope.decrease = function(ex){
+      if( ex.num >0 ) {
+        ex.num--;
+        DataService.storeExtras($scope.extras);
+      }
+    };
+
+    $scope.reset = function(){
+      DataService.storeExtras();
+      DataService.resetExtras();
+    }
+});
