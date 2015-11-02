@@ -1108,7 +1108,7 @@ angular.module('starter.services', [])
     id: 50,
     title: 'Обработка ткани 0 и 1 группы',
     titleLong: '',
-    num: 1,
+    num: 0,
     weight: 1,
     extraGroups: [eg.coat.group,eg.pants.group,eg.dress.group,eg.shirt.group]
 }, {
@@ -1317,6 +1317,11 @@ angular.module('starter.services', [])
         return storedExtra;
       }
 
+      if( typeof extraGroup === "undefined" ){
+        console.log("Return ALL extras array");
+        return extras;
+      }
+
       var chosenExtras = [];
       angular.forEach(extras,function(v){
         if( v.extraGroups.indexOf(extraGroup) > -1 ){
@@ -1345,9 +1350,6 @@ angular.module('starter.services', [])
     getexgroup: function(group){
       var extraGroup = null;
       angular.forEach(eg,function(v){
-        console.log("v: " + angular.toJson(v));
-        console.log("v.group: " + v.group);
-        console.log("group: " + group);
         if( parseInt(v.group) == parseInt(group)){
           extraGroup = v;
         }

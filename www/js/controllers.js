@@ -29,6 +29,8 @@ angular.module('starter.controllers', [])
       // Reset old selection
       Products.reset();
       Extras.reset();
+      console.log("Reset extras in storage!" + angular.toJson(localStorage.getItem('extras')));
+
 
       // Renew products in scope
       $scope.products = Products.all($scope.fabric.group);
@@ -45,6 +47,13 @@ angular.module('starter.controllers', [])
   })
 
 .controller('ExtrasCtrl', function($scope, Extras, Products, $filter, $ionicListDelegate){
+
+    console.log("I'm in Extras controller!");
+
+    angular.forEach($scope.extras,function(v){
+      v.num = 0;
+    });
+
     $scope.error = null;
     $scope.product = Products.get();
 
@@ -59,6 +68,8 @@ angular.module('starter.controllers', [])
 
    $scope.extraGroupFilter = Extras.getexgroup($scope.product.extraGroup);
     console.log("Extra group: " + angular.toJson($scope.extraGroupFilter));
+
+
 
   $scope.extras = Extras.all($scope.product.extraGroup);
   if( typeof $scope.extras === "undefined" || $scope.extras.length ==0 ){
@@ -97,7 +108,10 @@ angular.module('starter.controllers', [])
 .controller('CalcCtrl', function($scope, Fabrics, Products, Extras, $filter){
     $scope.storedFabric = Fabrics.get();
     $scope.storedProduct = Products.get();
-    $scope.storedExtras = Extras.get($scope.product.extraGroup);
+    $scope.storedExtras = Extras.get();
+
+    console.log("Stored extras: " + angular.toJson($scope.storedExtras));
+
     $scope.extraLength = {
       text: 1,
     };
