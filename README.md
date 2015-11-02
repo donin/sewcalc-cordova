@@ -3,7 +3,7 @@
 Simple ionic/cordova app for a dressmaker.
 
 Data model schema:
-https://drive.google.com/file/d/0B6XBsxDfQS19VWpmRzk3aTdQZXc/view?usp=sharing
+https://goo.gl/JfO2eK
 
 TODO: 
   * Calculator tab
