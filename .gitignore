@@ -6,3 +6,5 @@ platforms/
 plugins/
 nbproject/
 .idea/
+.io-config.json
+www/lib/
