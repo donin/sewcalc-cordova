@@ -13,7 +13,9 @@ Spec:
   * User can view calculation results [not finished yet]
   
 
-TODO: 
+TODO:
+  * Disable / enable tabs
+  * Sort extras list by num
   * Calculator tab
   * Multilanguage interface
   * Sign in/ sign up with google+ / parse.com
