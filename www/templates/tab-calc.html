@@ -28,12 +28,13 @@
         </div>
       </div>
     </div>
+    <form name="myForm">
     <div class="list card">
       <div class="item item-divider">Экстра размеры</div>
       <div class="item item-body">
         <div class="item range range-positive">
           <span>0.8</span>
-          <input type="range" ng-model="extraLength.text" name="extra_length" min="0.8" max="1.2" step="0.2" >
+          <input type="range" name="extraLength" ng-pattern="/^(0.8|1|1.2){1}$/" ng-model="extraLength.value" min="0.8" max="1.2" step="0.2" >
           <span>1.2</span>
         </div>
       </div>
@@ -41,14 +42,15 @@
     <div class="list card">
       <div class="item item-divider">Ставка за 1 час</div>
         <label class="item item-input">
-          <input type="text" name="personal_rate" ng-model="personalRate.text" required ng-pattern="personalRate.pattern"/>
+          <input type="text" name="personalRate" ng-pattern="/^([1-9]+)([0-9]?)(\.[0-9]+)?$/" ng-model="personalRate.value" required />
         </label>
+      <span ng-show="!myForm.personalRate.$valid">Неправильно указана ставка.</span>
     </div>
+    </form>
 
 
 
-
-    <div class="list card">
+    <div class="list card" ng-show="myForm.personalRate.$valid">
       <div class="item item-divider">Сумма</div>
       <div class="item item-body">
         <div class="assertive-bg" ng-show="!isValidate">{{error}}</div>
@@ -56,7 +58,7 @@
       </div>
     </div>
 
-    <div class="list card">
+    <div class="list card" ng-show="myForm.personalRate.$valid">
       <div class="item item-divider">Итоговая формула</div>
       <div class="item item-body">
         <div class="assertive-bg" ng-show="!isValidate">{{error}}</div>
