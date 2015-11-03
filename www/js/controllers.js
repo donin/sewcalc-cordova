@@ -3,10 +3,10 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('CalcCtrl', function($scope, Fabrics, Products, Extras, $filter){
-    $scope.storedFabric = Fabrics.get();
-    $scope.storedProduct = Products.get();
-    $scope.storedExtras = Extras.get();
+.controller('CalcCtrl', function($scope, DataService, $filter){
+    $scope.storedFabric = DataService.storedFabric();
+    $scope.storedProduct = DataService.storedProduct();
+    $scope.storedExtras = DataService.storedExtras();
 
     console.log("Stored extras: " + angular.toJson($scope.storedExtras));
 
