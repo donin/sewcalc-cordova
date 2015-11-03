@@ -8,7 +8,7 @@ https://goo.gl/JfO2eK
 Spec:
   * User can choose fabric type
   * User can choose base product type
-  * User can choose extras [bug here]
+  * User can choose extras
   * User can setup additional parameters (extra size, rate) [not finished yet]
   * User can view calculation results [not finished yet]
   
@@ -20,6 +20,6 @@ TODO:
   * Save calculation results in the cloud
 
 Know bugs:
-  * Extras didn't change when product type has changed
+  n/a
   
   
