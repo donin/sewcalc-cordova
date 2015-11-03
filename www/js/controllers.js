@@ -123,9 +123,12 @@ angular.module('starter.controllers', [])
       $scope.totalAmount = timeCutting + timeSewing;
       $scope.formulaText += "" + formulaTextExtra;
 
+      // Add global brakets
+      $scope.formulaText = "(" + $scope.formulaText + ")";
+
       $scope.totalAmount = $scope.totalAmount + totalExtra;
       if ($scope.isZeroGroup) {
-        $scope.formulaText = "(" + $scope.formulaText + ")x1.2";
+        $scope.formulaText += "x1.2";
         $scope.totalAmount * 1.2
       }
 
