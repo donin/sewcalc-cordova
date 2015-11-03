@@ -12,7 +12,10 @@
       </ion-item>
     </ion-list>
   </ion-content>
-  <ion-footer-bar align-title="right" class="bar-balanced" ng-show="fabric">
-      <h6>Ткань: {{fabric.title}}</h6>
+  <ion-footer-bar class="bar-balanced" ng-show="fabric">
+    <button class="button item-button-left button-clear">{{fabric.title}}</button>
+    <button class="button item-button-right button-balanced" ng-click="reset();">
+      <i class="icon ion-refresh"></i>
+    </button>
   </ion-footer-bar>
 </ion-view>

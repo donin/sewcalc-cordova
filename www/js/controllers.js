@@ -164,7 +164,10 @@ angular.module('starter.controllers', [])
     //$scope.$digest();
   }
 
-
+  $scope.reset = function(){
+    DataService.storeProduct();
+    DataService.resetProducts();
+  }
 
 })
 
@@ -172,6 +175,12 @@ angular.module('starter.controllers', [])
 
     // Get Product object stored in local storage
     $scope.product = DataService.storedProduct();
+
+    // Show extras only if product has been chosen
+    if(!$scope.product){
+      return false;
+    }
+
     $scope.extraGroupTitle = DataService.getExtraGroupTitle($scope.product.extraGroup);
     console.log("product extra group: " + $scope.product.extraGroup);
 

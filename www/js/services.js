@@ -12,10 +12,94 @@ angular.module('starter.services', [])
      * 4 - blouse
      */
     var eg = {
-      coat: {group: 1, title: 'Плащи'},
-      pants: {group: 2, title: 'Штаны' },
-      dress: {group: 3, title: 'Платья'},
-      shirt: {group: 4, title: 'Рубашка'}
+      coat: {
+        group: 1,
+        title: 'Плащи',
+        groupRates: [{
+          group: 1, // fabricGroup
+          timeCutting: 0.11,
+          timeSewing: 0.9
+        }, {
+          group: 2,
+          timeCutting: 0.11,
+          timeSewing: 0.8
+        }, {
+          group: 3,
+          timeCutting: 0.1,
+          timeSewing: 0.59
+        }, {
+          group: 4,
+          timeCutting: 0.1,
+          timeSewing: 0.59
+        }
+        ]
+      },
+      pants: {
+        group: 2,
+        title: 'Штаны',
+        groupRates: [{
+          group: 1, // fabricGroup
+          timeCutting: 0.1,
+          timeSewing: 0.76
+        }, {
+          group: 2,
+          timeCutting: 0.1,
+          timeSewing: 0.59
+        }, {
+          group: 3,
+          timeCutting: 0.06,
+          timeSewing: 0.51
+        }, {
+          group: 4,
+          timeCutting: 0.06,
+          timeSewing: 0.51
+        }
+        ]
+      },
+      dress: {
+        group: 3,
+        title: 'Платья',
+        groupRates: [{
+          group: 1, // fabricGroup
+          timeCutting: 0.09,
+          timeSewing: 0.99
+        }, {
+          group: 2,
+          timeCutting: 0.08,
+          timeSewing: 0.76
+        }, {
+          group: 3,
+          timeCutting: 0.07,
+          timeSewing: 0.69
+        }, {
+          group: 4,
+          timeCutting: 0.07,
+          timeSewing: 0.69
+        }
+        ]
+      },
+      shirt: {
+        group: 4,
+        title: 'Рубашка',
+        groupRates: [{
+          group: 1, // fabricGroup
+          timeCutting: 0.075,
+          timeSewing: 0.26
+        }, {
+          group: 2,
+          timeCutting: 0.062,
+          timeSewing: 0.24
+        }, {
+          group: 3,
+          timeCutting: 0.062,
+          timeSewing: 0.24
+        }, {
+          group: 4,
+          timeCutting: 0.047,
+          timeSewing: 0.18
+        }
+        ]
+      }
     };
 
   var products = [{
@@ -573,7 +657,7 @@ angular.module('starter.services', [])
       timeSewing: 4.87
     }
     ],
-    extraGroup: eg.dress.group
+    extraGroup: eg.pants.group
   }, {
     id: 24,
     title: 'Платье, сарафан',
