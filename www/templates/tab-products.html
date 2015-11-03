@@ -1,6 +1,14 @@
 <ion-view view-title="Products & time rates">
   <ion-content>
 
+    <div class="list card" ng-show="!fabric">
+      <div class="item item-divider">Тип ткани не указан</div>
+      <div class="item item-body">
+          <p>Укажите, пожалуйста тип ткани, для отображения списка базовых изделий.</p>
+        </div>
+      </div>
+    </div>
+
     <ion-list>
       <ion-item ng-click="(p.showmore=p.showmore?false:true)"
                 class="item item-icon-left item-text-wrap"

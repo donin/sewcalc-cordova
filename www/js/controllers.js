@@ -186,7 +186,10 @@ angular.module('starter.controllers', [])
 
   // Get fabric object stored in local storage
   $scope.fabric = DataService.storedFabric();
-  console.log("fabric group: " + $scope.fabric.group);
+
+  if( !angular.isObject($scope.fabric) ){
+    return false;
+  }
 
 
   /**
@@ -257,7 +260,7 @@ angular.module('starter.controllers', [])
     $scope.product = DataService.storedProduct();
 
     // Show extras only if product has been chosen
-    if(!$scope.product){
+    if(!angular.isObject($scope.product)){
       return false;
     }
 

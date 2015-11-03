@@ -1,6 +1,14 @@
 <ion-view view-title="Extra options">
   <ion-content>
 
+    <div class="list card" ng-show="!product">
+      <div class="item item-divider">Изделие не выбрано</div>
+      <div class="item item-body">
+        <p>Базовое изделие не выбрано. Укажите, пожалуйста базовое изделие для отображения списка усложняющих элементов.</p>
+      </div>
+    </div>
+    </div>
+
     <ion-list>
       <ion-item class="item item-text-wrap"
                 ng-repeat="x in extras">
