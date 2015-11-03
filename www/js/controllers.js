@@ -7,8 +7,7 @@ angular.module('starter.controllers', [])
     $scope.storedFabric = DataService.storedFabric();
     $scope.storedProduct = DataService.storedProduct();
     $scope.storedExtras = DataService.storedExtras();
-
-    console.log("Stored extras: " + angular.toJson($scope.storedExtras));
+    $scope.extraGroups = DataService.getExtraGroups();
 
     $scope.extraLength = {
       text: 1,
@@ -18,51 +17,129 @@ angular.module('starter.controllers', [])
       pattern: /^[0-9]+.?[0-9]?$/
     };
 
-    $scope.calculator = {
-      isValidate: false,
-      error: null,
-      group: null,
-      timeCutting: null,
-      timeSewing: null,
-      total: function(){
-
-        // Get fabric group
-        if (typeof $scope.storedFabric.group === "undefined"){
-          this.isValidate = false;
-          this.error = 'Fabric group is unknown';
-          return 0;
-        }
-        this.group = parseInt($scope.storedFabric.group);
-        console.log("Group: " + this.group);
-
-        // Check if product type exists
-        if( typeof $scope.storedProduct.groupRates === "undefined" ){
-          this.isValidate = false;
-          this.error = 'Product type is unknown';
-          return 0;
-        }
-
-        // Check if rates for current group exist
-        var groupRates = $filter('filter')($scope.storedProduct.groupRates,{group:this.group});
-        console.log(angular.toJson($scope.storedProduct));
-        console.log(angular.toJson(groupRates));
-        if(  groupRates.length <=0 ){
-          this.isValidate = false;
-          this.error = 'Rates for group are undefined';
-          return 0;
-        }
-        this.timeCutting = groupRates[0].timeCutting;
-        this.timeSewing = groupRates[0].timeSewing;
-
-        // Here extra with time rates
-        // end of Here extra with time rates
-
-        this.isValidate = true;
-        this.error = '';
-        return 0;
+    $scope.getExtraRate = function(rates,group){
+      var r;
+      if( group == rates.coat.group ) {
+        console.log("group == rates.coat.group: " + group + "==" + rates.coat.group);
+        r = $filter('filter')(rates.coat.groupRates,{group:group});
       }
+      if( group == rates.pants.group ) {
+        console.log("group == rates.pants.group: " + group + "==" + rates.pants.group);
+        r = $filter('filter')(rates.pants.groupRates,{group:group});
+      }
+      if( group == rates.dress.group ) {
+        console.log("group == rates.shirt.group: " + group + "==" + rates.shirt.group);
+        r = $filter('filter')(rates.dress.groupRates,{group:group});
+      }
+      if( group == rates.shirt.group ) {
+        console.log("group == rates.shirt.group: " + group + "==" + rates.shirt.group);
+        r = $filter('filter')(rates.shirt.groupRates,{group:group});
+      }
+      console.log("getExtraRate: " + angular.toJson(r));
+      return r[0];
     };
 
+
+    $scope.totalAmount = 0;
+    $scope.error = null;
+    $scope.isZeroGroup = false;
+    $scope.isValidate = false;
+    $scope.formulaText = '';
+
+    var totalExtra = 0;
+    var group = null;
+    var formulaTextExtra = '';
+    var timeCutting = 0;
+    var timeSewing = 0;
+
+    // Get fabric group
+    if (typeof $scope.storedFabric.group === "undefined"){
+      $scope.isValidate = false;
+      $scope.error = 'Fabric group is unknown';
+      return false;
+    }
+
+    group = parseInt($scope.storedFabric.group);
+    console.log("Group: " + group);
+
+    // Zero group verification
+    if( group === 0 ){
+      $scope.isZeroGroup = true;
+      group = 1;
+      console.log("Zero group found!");
+    }
+
+    // Check if product type exists
+    if( typeof $scope.storedProduct.groupRates === "undefined" ){
+      $scope.isValidate = false;
+      $scope.error = 'Product type is unknown';
+      return false;
+    }
+
+    // Check if rates for current group exist
+    var groupRates = $filter('filter')($scope.storedProduct.groupRates,{group:group});
+    console.log(angular.toJson($scope.storedProduct));
+    console.log(angular.toJson(groupRates));
+    if(  groupRates.length <=0 ){
+      $scope.isValidate = false;
+      $scope.error = 'Rates for group are undefined';
+      return false;
+    }
+    timeCutting = groupRates[0].timeCutting;
+    timeSewing = groupRates[0].timeSewing;
+
+    // Update formula text
+    $scope.formulaText = $scope.storedProduct.title
+      + "("+ timeCutting + "+" + timeSewing+")";
+    // _Update formula text
+
+    // Extra length
+    if( parseFloat($scope.extraLength.text) > 0 ){
+      $scope.formulaText += "x" + parseFloat($scope.extraLength.text);
+    }
+
+    // Here extra with time rates
+    angular.forEach($scope.storedExtras,function(v){
+      formulaTextExtra += " + " + v.title + "(";
+
+      var r = $scope.getExtraRate($scope.extraGroups, group);
+      formulaTextExtra += "" + r.timeCutting + "+" + r.timeSewing;
+      totalExtra = totalExtra + r.timeCutting + r.timeSewing;
+
+      formulaTextExtra += ")";
+      if(v.num > 1){
+        formulaTextExtra += "x" + v.num;
+      }
+    });
+    // end of Here extra with time rates
+
+    // Extra length
+    if( parseFloat($scope.extraLength.text) > 0 ){
+      timeCutting  = timeCutting * parseFloat($scope.extraLength.text);
+      timeSewing = timeSewing * parseFloat($scope.extraLength.text);
+    }
+
+    $scope.totalAmount = timeCutting + timeSewing;
+    $scope.formulaText += "" + formulaTextExtra;
+
+    $scope.totalAmount = $scope.totalAmount + totalExtra;
+    if( $scope.isZeroGroup ){
+      $scope.formulaText = "(" + $scope.formulaText + ")x1.2";
+      $scope.totalAmount * 1.2
+    }
+
+    // Personal rate
+    $scope.formulaText += "x" + $scope.personalRate.text;
+    $scope.totalAmount  = $scope.totalAmount * parseFloat($scope.personalRate.text);
+    $scope.totalAmount = Math.round($scope.totalAmount);
+
+
+    $scope.isValidate = true;
+    $scope.error = '';
+
+    $scope.getTotal = function(){
+      return $scope.totalAmount;
+    };
 })
 
 .controller('FabricsCtrl', function($scope, DataService, $filter, $ionicListDelegate) {

@@ -1,15 +1,16 @@
 <ion-view view-title="Summary & calculation">
   <ion-content class="padding">
     <div class="list card">
-      <div class="item item-divider">Fabric type</div>
+      <div class="item item-divider">Тип ткани</div>
       <div class="item item-body">
         <div>
           <b>{{storedFabric.title}}</b>
+          <p ng-show="calculator.isZeroGroup">Материал повышенной сложности! Коэффициент 1.2</p>
         </div>
       </div>
     </div>
     <div class="list card">
-      <div class="item item-divider">Product</div>
+      <div class="item item-divider">Тип базового изделия</div>
       <div class="item item-body">
         <div>
           <b>{{storedProduct.title}}</b>
@@ -20,7 +21,7 @@
       </div>
     </div>
     <div class="list card" ng-show="storedExtras.length">
-      <div class="item item-divider">Extras options</div>
+      <div class="item item-divider">Усложняющие элементы</div>
       <div class="item item-body" ng-repeat="x in storedExtras">
         <div>
           {{x.title}} x {{x.num}}
@@ -28,7 +29,7 @@
       </div>
     </div>
     <div class="list card">
-      <div class="item item-divider">Extra size & length</div>
+      <div class="item item-divider">Экстра размеры</div>
       <div class="item item-body">
         <div class="item range range-positive">
           <span>0.8</span>
@@ -38,22 +39,28 @@
       </div>
     </div>
     <div class="list card">
-      <div class="item item-divider">Your personal rate</div>
+      <div class="item item-divider">Ставка за 1 час</div>
         <label class="item item-input">
-        <span class="input-label">Rate</span>
           <input type="text" name="personal_rate" ng-model="personalRate.text" required ng-pattern="personalRate.pattern"/>
         </label>
     </div>
+
+
+
+
     <div class="list card">
-      <div class="item item-divider">Calculator</div>
+      <div class="item item-divider">Сумма</div>
       <div class="item item-body">
-        <div class="assertive-bg" ng-show="!calculator.isValidate">{{calculator.error}}</div>
-        <div ng-show="calculator.isValidate">{{calculator.total()}}</div>
-        <div ng-show="calculator.isValidate">
-          <div>Fabric group: {{calculator.group}}</div>
-          <div>Cutting time: {{calculator.timeCutting}}</div>
-          <div>Sewing time: {{calculator.timeSewing}}</div>
-        </div>
+        <div class="assertive-bg" ng-show="!isValidate">{{error}}</div>
+        <div ng-show="isValidate">{{getTotal()}}</div>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-divider">Итоговая формула</div>
+      <div class="item item-body">
+        <div class="assertive-bg" ng-show="!isValidate">{{error}}</div>
+        <div>{{formulaText}}</div>
       </div>
     </div>
   </ion-content>

@@ -1487,6 +1487,9 @@ angular.module('starter.services', [])
       });
       return localStorage.setItem('extras',angular.toJson(selectedExtras));
     },
+    getExtraGroups: function(){
+      return eg;
+    },
     getExtraGroupTitle: function(id){
       if( id == 1 ){
         return eg.coat.title;
