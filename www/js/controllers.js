@@ -9,6 +9,13 @@ angular.module('starter.controllers', [])
     $scope.storedExtras = DataService.storedExtras();
     $scope.extraGroups = DataService.getExtraGroups();
 
+    $scope.fatalError = false;
+    if( !angular.isObject($scope.storedFabric) || !angular.isObject($scope.storedProduct)){
+      $scope.fatalError = true;
+      return false;
+    }
+
+
     $scope.extraLength = {
       value: 1
     };
