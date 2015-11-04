@@ -15,9 +15,9 @@ Spec:
   * User can choose extra options
   * User can setup additional parameters (extra size, rate)
   * User can view calculation results
+  * Product types info page (image slider)
 
 TODO:
-  * Product types info page
   * Disable / enable tabs (wizzard mode)
   * Sort extra options list by num field
   * Multi language interface
