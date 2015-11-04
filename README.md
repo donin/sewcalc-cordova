@@ -17,6 +17,7 @@ Spec:
   * User can view calculation results
 
 TODO:
+  * Product types info page
   * Disable / enable tabs (wizzard mode)
   * Sort extra options list by num field
   * Multi language interface
