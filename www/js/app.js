@@ -62,6 +62,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       })
 
+
+
       .state('tab.extras', {
         cache: false,
         url: '/extras',
@@ -79,6 +81,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           'tab-calc': {
             templateUrl: 'templates/tab-calc.html',
             controller: 'CalcCtrl'
+          }
+        }
+      })
+      .state('tab.info', {
+        url: '/info',
+        views: {
+          'tab-info': {
+            templateUrl: 'templates/tab-info.html',
+            controller: 'InfoCtrl'
           }
         }
       });

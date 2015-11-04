@@ -1,6 +1,10 @@
 angular.module('starter.controllers', [])
 
-
+.controller('InfoCtrl', function($scope, $state, DataService, $ionicHistory, $ionicSlideBoxDelegate) {
+  $scope.navGoBack = function(){
+    $state.go('tab.products');
+  };
+})
 
 
 .controller('CalcCtrl', function($scope, DataService, $filter) {
@@ -180,7 +184,11 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ProductsCtrl', function($scope, DataService, $filter, $ionicListDelegate){
+.controller('ProductsCtrl', function($scope, DataService, $filter, $ionicListDelegate, $ionicTabsDelegate){
+
+  $scope.navInfo = function(){
+    $ionicTabsDelegate.select(4);
+  };
 
   // Get fabric object stored in local storage
   $scope.fabric = DataService.storedFabric();
