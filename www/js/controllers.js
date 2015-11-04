@@ -27,22 +27,17 @@ angular.module('starter.controllers', [])
     $scope.getExtraRate = function (rates, group) {
       var r;
       if (group == rates.coat.group) {
-        console.log("group == rates.coat.group: " + group + "==" + rates.coat.group);
         r = $filter('filter')(rates.coat.groupRates, {group: group});
       }
       if (group == rates.pants.group) {
-        console.log("group == rates.pants.group: " + group + "==" + rates.pants.group);
         r = $filter('filter')(rates.pants.groupRates, {group: group});
       }
       if (group == rates.dress.group) {
-        console.log("group == rates.shirt.group: " + group + "==" + rates.shirt.group);
         r = $filter('filter')(rates.dress.groupRates, {group: group});
       }
       if (group == rates.shirt.group) {
-        console.log("group == rates.shirt.group: " + group + "==" + rates.shirt.group);
         r = $filter('filter')(rates.shirt.groupRates, {group: group});
       }
-      console.log("getExtraRate: " + angular.toJson(r));
       return r[0];
     };
 
@@ -68,13 +63,11 @@ angular.module('starter.controllers', [])
       }
 
       group = parseInt($scope.storedFabric.group);
-      console.log("Group: " + group);
 
       // Zero group verification
       if (group === 0) {
         $scope.isZeroGroup = true;
         group = 1;
-        console.log("Zero group found!");
       }
 
       // Check if product type exists
@@ -86,8 +79,6 @@ angular.module('starter.controllers', [])
 
       // Check if rates for current group exist
       var groupRates = $filter('filter')($scope.storedProduct.groupRates, {group: group});
-      console.log(angular.toJson($scope.storedProduct));
-      console.log(angular.toJson(groupRates));
       if (groupRates.length <= 0) {
         $scope.isValidate = false;
         $scope.error = 'Rates for group are undefined';
@@ -209,7 +200,6 @@ angular.module('starter.controllers', [])
     return $filter('filter')(products,function(v){
 
       if (v.filterGroups.indexOf(fabric.group) > -1){
-        console.log("v: " + angular.toJson(v.filterGroups));
         return true;
       }
       return false;
@@ -272,7 +262,6 @@ angular.module('starter.controllers', [])
     }
 
     $scope.extraGroupTitle = DataService.getExtraGroupTitle($scope.product.extraGroup);
-    console.log("product extra group: " + $scope.product.extraGroup);
 
     /**
      * Filter extras by product extra group
@@ -284,7 +273,6 @@ angular.module('starter.controllers', [])
       return $filter('filter')(extras,function(v){
 
         if (v.extraGroups.indexOf(group) > -1){
-          console.log("v: " + angular.toJson(v.extraGroups));
           return true;
         }
         return false;
@@ -300,7 +288,6 @@ angular.module('starter.controllers', [])
 
     // Restore extras selection
     var storedExtras = DataService.storedExtras();
-    console.log("storedExtras: "+ angular.toJson(storedExtras));
     if( storedExtras ) {
       angular.forEach(storedExtras, function (v) {
         angular.forEach($scope.extras, function(ex){

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.sewcal706696" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>sewcal</name>
+  <name>Sewcalc</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Simple Ionic/Cordova mobile application for a dressmaker.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
+  <author email="peter@donin.net" href="https://github.com/donin/sewcalc-cordova">
       Ionic Framework Team
     </author>
   <content src="index.html"/>
