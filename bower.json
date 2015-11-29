@@ -4,5 +4,8 @@
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.1.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "resolutions": {
+    "angular": "1.4.3"
+  }
 }

@@ -1,13 +1,19 @@
 angular.module('starter.controllers', [])
 
-.controller('InfoCtrl', function($scope, $state, DataService, $ionicHistory, $ionicSlideBoxDelegate) {
+.controller('InfoCtrl', [
+    '$scope',
+    '$state',
+    'DataService',
+    '$ionicHistory',
+    '$ionicSlideBoxDelegate',
+    function InfoCtrl($scope, $state, DataService, $ionicHistory, $ionicSlideBoxDelegate) {
   $scope.navGoBack = function(){
     $state.go('tab.products');
   };
-})
+}])
 
 
-.controller('CalcCtrl', function($scope, DataService, $filter) {
+.controller('CalcCtrl', ['$scope','DataService','$filter', function CalcCtrl($scope, DataService, $filter) {
     $scope.storedFabric = DataService.storedFabric();
     $scope.storedProduct = DataService.storedProduct();
     $scope.storedExtras = DataService.storedExtras();
@@ -107,7 +113,7 @@ angular.module('starter.controllers', [])
 
         var r = $scope.getExtraRate($scope.extraGroups, group);
         formulaTextExtra += "" + r.timeCutting + "+" + r.timeSewing;
-        totalExtra = totalExtra + r.timeCutting + r.timeSewing;
+        totalExtra = totalExtra + (r.timeCutting + r.timeSewing)*v.num;
 
         formulaTextExtra += ")";
         if (v.num > 1) {
@@ -131,7 +137,7 @@ angular.module('starter.controllers', [])
       $scope.totalAmount = $scope.totalAmount + totalExtra;
       if ($scope.isZeroGroup) {
         $scope.formulaText += "x1.2";
-        $scope.totalAmount * 1.2
+        $scope.totalAmount  = $scope.totalAmount * 1.2;
       }
 
       // Personal rate
@@ -145,9 +151,10 @@ angular.module('starter.controllers', [])
 
       return $scope.totalAmount;
     };
-})
+}])
 
-.controller('FabricsCtrl', function($scope, DataService, $filter, $ionicListDelegate) {
+.controller('FabricsCtrl', ['$scope','DataService','$filter','$ionicListDelegate',
+    function FabricsCtrl($scope, DataService, $filter, $ionicListDelegate) {
     DataService.resetFabrics();
     $scope.fabrics = DataService.getFabrics();
 
@@ -182,9 +189,11 @@ angular.module('starter.controllers', [])
       // I don't sure if I need to do it =)
       //$scope.$digest();
     }
-})
+}])
 
-.controller('ProductsCtrl', function($scope, DataService, $filter, $ionicListDelegate, $ionicTabsDelegate){
+.controller('ProductsCtrl', [
+    '$scope','DataService','$filter','$ionicListDelegate','$ionicTabsDelegate',
+    function ProductsCtrl($scope, DataService, $filter, $ionicListDelegate, $ionicTabsDelegate){
 
   $scope.navInfo = function(){
     $ionicTabsDelegate.select(4);
@@ -257,9 +266,10 @@ angular.module('starter.controllers', [])
     DataService.resetProducts();
   }
 
-})
+}])
 
-.controller('ExtrasCtrl', function($scope, DataService, $filter, $ionicListDelegate){
+.controller('ExtrasCtrl', ['$scope','DataService','$filter','$ionicListDelegate',
+    function ExtrasCtrl($scope, DataService, $filter, $ionicListDelegate){
 
     // Get Product object stored in local storage
     $scope.product = DataService.storedProduct();
@@ -322,4 +332,4 @@ angular.module('starter.controllers', [])
       DataService.storeExtras();
       DataService.resetExtras();
     }
-});
+}]);
